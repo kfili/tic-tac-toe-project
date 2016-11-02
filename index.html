@@ -6,7 +6,7 @@
       <script src="bundle.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <h1>Tic Tac Toe h1</h1>
+
 
       <!-- NAVBAR STARTS -->
       <nav class="navbar navbar-default">
@@ -26,24 +26,12 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-              <li><a href="#">Contact</a></li>
-              <!-- <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">One more separated link</a></li>
-                </ul>
-              </li> -->
+              <li><a href="#">About</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign up / in? <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign up / in<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="#">
                       <!-- sign up - Button trigger modal -->
@@ -68,7 +56,7 @@
                     </a>
                   </li>
                   <li>
-                    <li><a href="#">
+                      <a href="#">
                       <!-- Sign Out Button  -->
                       <form id="sign-out">
                       <button type="submit" class="btn btn-primary btn-lg">
@@ -76,7 +64,7 @@
                       </button>
                       </form>
                       </a>
-                    </li>                  </li>
+                   </li>
 
                 </ul>
               </li>
@@ -87,23 +75,23 @@
       <!-- NAVBAR ENDS -->
 
 
-      <div class='container-fluid'>
-      <div class='row'>
-          <div class='col-md-4'>1</div>
-          <div class='col-md-4'>2</div>
-          <div class='col-md-4'>3</div>
-      </div>
-      <div class='row'>
-          <div class='col-md-4'>4</div>
-          <div class='col-md-4'>5</div>
-          <div class='col-md-4'>6</div>
-      </div>
-      <div class='row'>
-          <div class='col-md-4'>7</div>
-          <div class='col-md-4'>8</div>
-          <div class='col-md-4'>9</div>
-      </div>
-  </div>
+      <div class='container'>
+        <div class='row'>
+            <div class='col-xs-4 1'></div>
+            <div class='col-xs-4 2'></div>
+            <div class='col-xs-4 3'></div>
+        </div>
+        <div class='row'>
+            <div class='col-xs-4 4'></div>
+            <div class='col-xs-4 5'></div>
+            <div class='col-xs-4 6'></div>
+        </div>
+        <div class='row'>
+            <div class='col-xs-4 7'></div>
+            <div class='col-xs-4 8'></div>
+            <div class='col-xs-4 9'></div>
+        </div>
+    </div>
 
       <!-- Sign up Modal -->
       <div class="modal fade" id="sign-up-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -195,10 +183,10 @@
             <div class="modal-body">
               <form class="sign-in-form">
                 <div class="form-group">
-                  <input type="email" class="form-control" id="sign-in-email" aria-describedby="emailHelp" placeholder="Enter email">
+                  <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" id="sign-in-password" placeholder="Password">
+                  <input type="password" class="form-control" placeholder="Password">
                 </div>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Submit</button>
