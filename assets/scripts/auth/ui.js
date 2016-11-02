@@ -10,9 +10,8 @@ const signInSuccess = (data) => {
 };
 
 const signOutSuccess = () => {
-  app.user = null;
   $("#messages").text("success");
-  console.log(app);
+  console.log(store.user);
 };
 
 const changePasswordSuccess = () => {
