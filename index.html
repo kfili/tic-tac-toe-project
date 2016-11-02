@@ -52,6 +52,7 @@
                       </button>
                       </a>
                   </li>
+                  <li role="separator" class="divider"></li>
                   <li><a href="#">
                     <!-- sign in - Button trigger modal -->
                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#sign-in-modal">
@@ -66,8 +67,17 @@
                     </button>
                     </a>
                   </li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">Sign Out</a></li>
+                  <li>
+                    <li><a href="#">
+                      <!-- Sign Out Button  -->
+                      <form id="sign-out">
+                      <button type="submit" class="btn btn-primary btn-lg">
+                        Sign Out
+                      </button>
+                      </form>
+                      </a>
+                    </li>                  </li>
+
                 </ul>
               </li>
             </ul>
@@ -100,17 +110,20 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
               <h4 class="modal-title">Sign Up</h4>
             </div>
             <div class="modal-body">
-              <form class="sign-up-form">
+              <form id="sign-up" class="modal-form">
                 <div class="form-group">
-                  <input type="email" class="form-control" id="sign-up-email" aria-describedby="emailHelp" placeholder="Enter email">
+                  <input name="credentials[email]" type="email" class="form-control" id="sign-up-email" aria-describedby="emailHelp" placeholder="Enter email">
                   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" id="sign-up-password" placeholder="Password">
+                  <input name="credentials[password]" type="password" class="form-control" id="sign-up-password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <input name="credentials[password_confirmation]" type="password" class="form-control" id="sign-up-password-conf" placeholder="Confirm Password">
                 </div>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -129,12 +142,12 @@
               <h4 class="modal-title">Sign In</h4>
             </div>
             <div class="modal-body">
-              <form class="sign-in-form">
+              <form id="sign-in" class="modal-form">
                 <div class="form-group">
-                  <input type="email" class="form-control" id="sign-in-email" aria-describedby="emailHelp" placeholder="Enter email">
+                  <input name="credentials[email]" type="email" class="form-control" id="sign-in-email" aria-describedby="emailHelp" placeholder="Enter email">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" id="sign-in-password" placeholder="Password">
+                  <input name="credentials[password]" type="password" class="form-control" id="sign-in-password" placeholder="Password">
                 </div>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -153,15 +166,39 @@
               <h2 class="modal-title">Change Password</h2>
             </div>
             <div class="modal-body">
-              <form class="change-password-form">
+              <form id="change-password" class="modal-form">
                 <div class="form-group">
                   <input type="email" class="form-control" id="change-password-email" aria-describedby="emailHelp" placeholder="Enter email">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" id="old-password" placeholder="Old Password">
+                  <input name="passwords[old]" type="password" class="form-control" id="old-password" placeholder="Old Password">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" id="new-password" placeholder="New Password">
+                  <input name="passwords[new]" type="password" class="form-control" id="new-password" placeholder="New Password">
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sign out Modal -->
+      <div class="modal fade" id="sign-out-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Sign In</h4>
+            </div>
+            <div class="modal-body">
+              <form class="sign-in-form">
+                <div class="form-group">
+                  <input type="email" class="form-control" id="sign-in-email" aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" id="sign-in-password" placeholder="Password">
                 </div>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Submit</button>

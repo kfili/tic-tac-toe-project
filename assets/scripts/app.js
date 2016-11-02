@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = {
-  host: 'http://localhost:3000',
+  host: 'https://aqueous-atoll-85096.herokuapp.com',
 };
