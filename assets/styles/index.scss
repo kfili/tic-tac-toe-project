@@ -14,12 +14,17 @@ body {
   color: $font-color;
 }
 
+h1 {
+  color: $black;
+  margin-left: 20px;
+}
+
 .box {
   border: 1px solid $white;
 }
 
 .container {
-  align-content: center;
+  margin: 20px;
 }
 
 .col-xs-4 {

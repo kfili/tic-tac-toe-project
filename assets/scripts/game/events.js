@@ -2,6 +2,8 @@
 
 // const store = require('../store');
 
+let over = false;
+let turn = 'X';
 const board = [
   '', '', '',
   '', '', '',
@@ -15,13 +17,13 @@ const emptyBoard = function () {
   }
 };
 
-let turn = 'X';
-
 const switchTurn = function () {
-  if (turn === 'X') {
+   if (turn === 'X') {
     turn = 'O';
+    $('#status').text('Make your move player O');
   } else {
     turn = 'X';
+    $('#status').text('Make your move player X');
   }
 };
 
@@ -37,7 +39,7 @@ const isWin = function () {
     || board[2] === 'X' && board[4] === 'X' && board[6] === 'X'
       ) {
         console.log('X wins!!');
-        emptyBoard();
+        return true;
       } else if (
     board[0] === 'O' && board[1] === 'O' && board[2] === 'O'
     || board[3] === 'O' && board[4] === 'O' && board[5] === 'O'
@@ -49,81 +51,80 @@ const isWin = function () {
     || board[2] === 'O' && board[4] === 'O' && board[6] === 'O'
       ) {
         console.log('O wins!!');
-        emptyBoard();
+        return true;
       } else if (
     board[0] !== '' && board[1] !== '' && board[2] !== ''
     && board[3] !== '' && board[4] !== '' && board[5] !== ''
     && board[6] !== '' && board[7] !== '' && board[8] !== ''
       ) {
         console.log('CATs game');
+        return true;
       } else {
         console.log('nada');
+        return false;
       }
 };
 
 const cellclick = function (e) {
   e.preventDefault();
-  if (board[$(this).data('cell')] === '') {
-    board[$(this).data('cell')] = turn;
-    // sets X/O to a div. target div?
-    $(this).text(turn);
-    isWin();
-    switchTurn();
-  } else {
-    console.log('this cell is taken, DND!');
-  }
+    if (over === false) {
+      if (board[$(this).data('cell')] === '' ) {
+          board[$(this).data('cell')] = turn;
+          $(this).text(turn);                 // sets X/O to a div
+          over = isWin();         // returns true if win or draw state detected
 
-  //update turn status
-  //to X/O depending on (turnstatus)
-  console.log(turn);
-  console.log(board);
-};
+          if (over === true) {
+              console.log(over);
+              $('#status').text('Player X wins!!');
+              debugger;
+            } else {
+            console.log(over);
+            switchTurn();                       // switches a variable that = X or O
+            }
+          }
+    } else if (over === true) {
+      debugger;
+      emptyBoard();                           // clears the board array.
+      over = false;
+      switchTurn();
+      }
+  };
 
-// const onCLICKtl = function(event){
-//   event.preventDefault();
-//   if (store.tl= ) {
-//
-//   }
-// };
-
-//--all cells were clicked - do something
-// const cellsClick = function(){
-//   event.preventDefault();
-//   $(' ').data(this)
-//   debugger;
-//   if (store.tl= ) {
-//
-//   }
-// };
-
-//check for wins & whos turn is it?
-
-
-//--Click handler
 const gameHandlers = () => {
   $('.col-xs-4').on('click', cellclick);
-  // $('#tc').on('click', onCLICKtc);
-  // $('#tr').on('click', onCLICKtr);
-  // $('#ml').on('click', onCLICKml);
-  // $('#mc').on('click', onCLICKmc);
-  // $('#mr').on('click', onCLICKmr);
-  // $('#ml').on('click', onCLICKbl);
-  // $('#bc').on('click', onCLICKbc);
-  // $('#br').on('click', onCLICKbr);
-};
-//
-// const gameHandlers = () => {
-//   $('#tr').on('click', onCLICKtr);
-//   $('#tc').on('click', onCLICKtc);
-//   $('#tr').on('click', onCLICKtr);
-//   $('#ml').on('click', onCLICKml);
-//   $('#mc').on('click', onCLICKmc);
-//   $('#mr').on('click', onCLICKmr);
-//   $('#ml').on('click', onCLICKbl);
-//   $('#bc').on('click', onCLICKbc);
-//   $('#br').on('click', onCLICKbr);
-// };
+  };
+
+  //cellFiller
+    // if cell full do nothing
+    // if cell empty check turn and fill
+    // call isWin?
+    // switchTurn?
 
 module.exports = {
   gameHandlers,
 };
+
+// const cellclick = function (e) {
+//   e.preventDefault();
+//   //check the game state
+//
+//
+//   //update board
+//   if (board[$(this).data('cell')] === '' && over === false) {
+//     board[$(this).data('cell')] = turn;
+//     $(this).text(turn); // sets X/O to a div
+//     let over = isWin();
+//
+//     if (over === 'winX') {
+//       debugger;
+//         $('#status').text('Player X wins!!');
+//         over = true;
+//     }
+//     switchTurn();
+//   } else if (over === true) {
+//     debugger
+//     emptyBoard();
+//   } else {
+//     console.log('this cell is taken, DND!');
+//   }
+// };
