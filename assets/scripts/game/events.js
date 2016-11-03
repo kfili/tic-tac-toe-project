@@ -8,42 +8,69 @@ const board = [
   '', '', ''
 ];
 
-let turn = 'x';
+const emptyBoard = function () {
+  for (let i = 0; i < board.length; i++) {
+    board[i] = '';
+    $('.col-xs-4').text('');
+  }
+};
+
+let turn = 'X';
 
 const switchTurn = function () {
-  if (turn === 'x') {
-    turn = 'o';
+  if (turn === 'X') {
+    turn = 'O';
   } else {
-      turn = 'x';
+    turn = 'X';
   }
-  // board[index] = turn;
 };
 
-//--single cell was clicked - do something
-// change background image in cell.
-// set owner?
-
-const isWinX = function () {
-  if(board[0] === 'x' && board[1] === 'x' && board[2] === 'x'
-  )
-  {console.log('win');
-} else {
-  console.log('nope');
-}
+const isWin = function () {
+    if(
+    board[0] === 'X' && board[1] === 'X' && board[2] === 'X'
+    || board[3] === 'X' && board[4] === 'X' && board[5] === 'X'
+    || board[6] === 'X' && board[7] === 'X' && board[8] === 'X'
+    || board[0] === 'X' && board[3] === 'X' && board[6] === 'X'
+    || board[1] === 'X' && board[4] === 'X' && board[7] === 'X'
+    || board[2] === 'X' && board[5] === 'X' && board[8] === 'X'
+    || board[0] === 'X' && board[4] === 'X' && board[8] === 'X'
+    || board[2] === 'X' && board[4] === 'X' && board[6] === 'X'
+      ) {
+        console.log('X wins!!');
+        emptyBoard();
+      } else if (
+    board[0] === 'O' && board[1] === 'O' && board[2] === 'O'
+    || board[3] === 'O' && board[4] === 'O' && board[5] === 'O'
+    || board[6] === 'O' && board[7] === 'O' && board[8] === 'O'
+    || board[0] === 'O' && board[3] === 'O' && board[6] === 'O'
+    || board[1] === 'O' && board[4] === 'O' && board[7] === 'O'
+    || board[2] === 'O' && board[5] === 'O' && board[8] === 'O'
+    || board[0] === 'O' && board[4] === 'O' && board[8] === 'O'
+    || board[2] === 'O' && board[4] === 'O' && board[6] === 'O'
+      ) {
+        console.log('O wins!!');
+        emptyBoard();
+      } else {
+        console.log('nada');
+      }
 };
 
-const setBoard = function (e) {
+const cellclick = function (e) {
   e.preventDefault();
-  if (board[$(this).data('cell')] !== '') {
+  if (board[$(this).data('cell')] === '') {
     board[$(this).data('cell')] = turn;
+    // sets X/O to a div. target div?
+    $(this).text(turn);
+    isWin();
+    switchTurn();
+  } else {
+    console.log('this cell is taken, DND!');
   }
-  //run isWin
-  //isWin()
+
   //update turn status
-  switchTurn();
   //to X/O depending on (turnstatus)
-  console.log(board[0]);
-  debugger;
+  console.log(turn);
+  console.log(board);
 };
 
 // const onCLICKtl = function(event){
@@ -68,7 +95,7 @@ const setBoard = function (e) {
 
 //--Click handler
 const gameHandlers = () => {
-  $('.col-xs-4').on('click', setBoard);
+  $('.col-xs-4').on('click', cellclick);
   // $('#tc').on('click', onCLICKtc);
   // $('#tr').on('click', onCLICKtr);
   // $('#ml').on('click', onCLICKml);
