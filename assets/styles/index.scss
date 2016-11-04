@@ -1,20 +1,39 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/';
 
-$background-color: #4e4e4e;
+
+$background-color: #d3d3d3;
 $font-color: #dfdfdf;
 $white: #fff;
+$blue: #00f;
+$black: #000;
+$cyangreen: #cff;
 
 body {
   background-color: $background-color;
   color: $font-color;
 }
 
+h1 {
+  color: $black;
+  margin-left: 20px;
+}
+
 .box {
   border: 1px solid $white;
 }
 
-.col-md-4 {
-  color: blue;
-  height: 50px;
+.container {
+  margin: 20px;
+}
+
+.col-xs-4 {
+  background-color: $cyangreen;
+  height: 200px;
+  width: 200px;
+  border: 1px solid $black;
+  font-size: 1500%;
+  font-color: $black;
+  line-height: 185px;
+  text-align: center;
 }

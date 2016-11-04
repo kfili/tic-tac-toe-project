@@ -2,11 +2,11 @@
 <html>
     <head>
       <title>Tic Tac Toe</title>
-      <script src="vendor.bundle.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="dependancies.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="bundle.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <h1>Tic Tac Toe h1</h1>
+
 
       <!-- NAVBAR STARTS -->
       <nav class="navbar navbar-default">
@@ -24,27 +24,22 @@
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-              <li><a href="#">Contact</a></li>
-              <!-- <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">One more separated link</a></li>
-                </ul>
-              </li> -->
-            </ul>
+
 
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign up / in? <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign up / in<span class="caret"></span></a>
                 <ul class="dropdown-menu">
+
+                  <li><a href="#">
+                      <!-- show-history - Button trigger modal -->
+                      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#show-history-modal">
+                        Game History
+                      </button>
+                      </a>
+                  </li>
+                  <li role="separator" class="divider"></li>
+
                   <li><a href="#">
                       <!-- sign up - Button trigger modal -->
                       <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#sign-up-modal">
@@ -52,7 +47,6 @@
                       </button>
                       </a>
                   </li>
-                  <li role="separator" class="divider"></li>
                   <li><a href="#">
                     <!-- sign in - Button trigger modal -->
                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#sign-in-modal">
@@ -68,7 +62,7 @@
                     </a>
                   </li>
                   <li>
-                    <li><a href="#">
+                      <a href="#">
                       <!-- Sign Out Button  -->
                       <form id="sign-out">
                       <button type="submit" class="btn btn-primary btn-lg">
@@ -76,7 +70,7 @@
                       </button>
                       </form>
                       </a>
-                    </li>                  </li>
+                   </li>
 
                 </ul>
               </li>
@@ -86,24 +80,25 @@
       </nav>
       <!-- NAVBAR ENDS -->
 
+      <h1 id="status">Make your move player X</h1>
 
-      <div class='container-fluid'>
-      <div class='row'>
-          <div class='col-md-4'>1</div>
-          <div class='col-md-4'>2</div>
-          <div class='col-md-4'>3</div>
-      </div>
-      <div class='row'>
-          <div class='col-md-4'>4</div>
-          <div class='col-md-4'>5</div>
-          <div class='col-md-4'>6</div>
-      </div>
-      <div class='row'>
-          <div class='col-md-4'>7</div>
-          <div class='col-md-4'>8</div>
-          <div class='col-md-4'>9</div>
-      </div>
-  </div>
+      <div class='container'>
+        <div class='row'>
+            <div class='col-xs-4' id="tl" data-cell='0'></div>
+            <div class='col-xs-4' id="tc" data-cell='1'></div>
+            <div class='col-xs-4' id="tr" data-cell='2'></div>
+        </div>
+        <div class='row'>
+            <div class='col-xs-4' id="ml" data-cell='3'></div>
+            <div class='col-xs-4' id="mc" data-cell='4'></div>
+            <div class='col-xs-4' id="mr" data-cell='5'></div>
+        </div>
+        <div class='row'>
+            <div class='col-xs-4' id="bl" data-cell='6'></div>
+            <div class='col-xs-4' id="bc" data-cell='7'></div>
+            <div class='col-xs-4' id="br" data-cell='8'></div>
+        </div>
+    </div>
 
       <!-- Sign up Modal -->
       <div class="modal fade" id="sign-up-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -195,14 +190,32 @@
             <div class="modal-body">
               <form class="sign-in-form">
                 <div class="form-group">
-                  <input type="email" class="form-control" id="sign-in-email" aria-describedby="emailHelp" placeholder="Enter email">
+                  <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" id="sign-in-password" placeholder="Password">
+                  <input type="password" class="form-control" placeholder="Password">
                 </div>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Game History Modal -->
+      <div class="modal fade" id="show-history-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Show history?</h4>
+            </div>
+            <div class="modal-body">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="game-history-div">
+                </div>
             </div>
           </div>
         </div>
