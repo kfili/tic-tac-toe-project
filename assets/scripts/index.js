@@ -2,6 +2,7 @@
 
 const authEvents = require('./auth/events.js');
 const gameEvents = require('./game/events.js');
+const gapiEvents = require('./gapi/events.js');
 
 // On document ready
 $(() => {
@@ -10,4 +11,8 @@ $(() => {
 
 $(() => {
   gameEvents.gameHandlers();
+});
+
+$(() => {
+  gapiEvents.gapiHandlers();
 });

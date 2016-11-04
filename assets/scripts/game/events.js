@@ -79,7 +79,7 @@ const cellclick = function (e) {
               } else if (gState === 'winO') {
                 $('#status').text('Player O wins!!');
               } else {
-                $('#status').text('Meeoow');
+                $('#status').text("Cat's Game.");
               }
             } else {
             console.log(gState);

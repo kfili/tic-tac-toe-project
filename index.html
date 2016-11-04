@@ -24,15 +24,22 @@
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-              <li><a href="#">About</a></li>
-            </ul>
+
 
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign up / in<span class="caret"></span></a>
                 <ul class="dropdown-menu">
+
+                  <li><a href="#">
+                      <!-- show-history - Button trigger modal -->
+                      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#show-history-modal">
+                        Game History
+                      </button>
+                      </a>
+                  </li>
+                  <li role="separator" class="divider"></li>
+
                   <li><a href="#">
                       <!-- sign up - Button trigger modal -->
                       <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#sign-up-modal">
@@ -40,7 +47,6 @@
                       </button>
                       </a>
                   </li>
-                  <li role="separator" class="divider"></li>
                   <li><a href="#">
                     <!-- sign in - Button trigger modal -->
                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#sign-in-modal">
@@ -192,6 +198,24 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Game History Modal -->
+      <div class="modal fade" id="show-history-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Show history?</h4>
+            </div>
+            <div class="modal-body">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="game-history-div">
+                </div>
             </div>
           </div>
         </div>
