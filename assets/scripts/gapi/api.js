@@ -7,11 +7,13 @@ const store = require('../store');
 
 //authApi.signUp(authUi.success, authUi.failure, data);
 
-const getHistory = function(data){
+const getHistory = function(){
   return $.ajax({
-    url: app.host + '/games/',
+    url: app.host + '/games',
     method: 'GET',
-    data,
+    headers : {
+          Authorization: 'Token token=' + store.user.token,
+    }
   });
 };
 

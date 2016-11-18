@@ -1,12 +1,12 @@
 'use strict';
-const app = require('../app.js');
-const store = require('../store');
+// const app = require('../app.js');
+// const store = require('../store');
 
 
 const getHistorySuccess = (data) => {
-  store.user = data.user;
-  console.log(store.user);
-  $("#messages").text("success");
+  // store.user = data.user;
+  console.log(data);
+  $("#messages").innerhtml(data);
 };
 
 const success = (data) => {

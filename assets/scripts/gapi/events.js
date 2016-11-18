@@ -6,13 +6,13 @@ const ui = require('./ui');
 
 const onGetHistory = function(event){
   event.preventDefault();
-  api.getHistory(data)
+  api.getHistory()
   .done(ui.getHistorySuccess)
   .fail(ui.fail);
 };
 
 const gapiHandlers = () => {
-  $('#show-history-modal').on('submit', onGetHistory);
+  $('#show-history-button').on('click', onGetHistory);
 };
 
 module.exports = {
