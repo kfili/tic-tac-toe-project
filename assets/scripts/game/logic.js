@@ -1,8 +1,8 @@
  'use strict';
 
+const events = require('./events');
 // const store = require('../store');
-// over true/false
-debugger;
+let over = false;
 let gState = 'go';
 let turn = 'X';
 const board = [
@@ -66,42 +66,46 @@ const isWin = function () {
       }
 };
 
-const cellclick = function (e) {
+const cellClick = function (e) {
   e.preventDefault();
-    if (gState === 'go') {
-      if (board[$(this).data('cell')] === '' ) {
+    if (gState === 'go') {                        //gStateCheck
+      if (board[$(this).data('cell')] === '' ) {  //cellCheck
           board[$(this).data('cell')] = turn;
-          $(this).text(turn);     // sets X/O to a div
+          $(this).text(turn);       // sets X/O to a div
           gState = isWin();         // returns true if win or draw state detected
-          // send PATCH
-          debugger;
-          if (gState !== 'go') {
+          // send PATCH - call updateGame
+          if (gState !== 'go') {                  //winCheck
               console.log(gState);
               if (gState === 'winX') {
                 $('#status').text('Player X wins!!');
+                over = true;
               } else if (gState === 'winO') {
                 $('#status').text('Player O wins!!');
+                over = true;
               } else {
                 $('#status').text("Cat's Game.");
+                over = true;
               }
             } else {
             console.log(gState);
-            switchTurn();         // switches a variable that = X or O
+            switchTurn();           // switches a variable that = X or O
             }
           }
-    } else if (gState !== 'go') {
-      emptyBoard();               // clears the board array.
+    } else if (gState !== 'go') {                 //resetGame
+      emptyBoard();                 // clears the board array.
       gState = 'go';
       switchTurn();
+      over = false;
+      events.onCreateGame();
       }
   };
 
-const gameHandlers = () => {
-  $('.col-xs-4').on('click', cellclick);
+const logicHandlers = () => {
+  $('.col-xs-4').on('click', cellClick);
   };
 
 
 
 module.exports = {
-  gameHandlers,
+  logicHandlers,
 };

@@ -2,6 +2,7 @@
 
 const api = require('./api');
 const ui = require('./ui');
+// const logic = require('./logic');
 //const getFormFields = require('../../../lib/get-form-fields.js');
 
 const onGetHistory = function(event){
@@ -11,10 +12,18 @@ const onGetHistory = function(event){
   .fail(ui.fail);
 };
 
-const gapiHandlers = () => {
+const onCreateGame = function(){
+  // event.preventDefault();
+  api.createGame()
+  .done(ui.createGameSuccess)
+  .fail(ui.fail);
+};
+
+const gameHandlers = () => {
   $('#show-history-button').on('click', onGetHistory);
 };
 
 module.exports = {
-  gapiHandlers,
+  gameHandlers,
+  onCreateGame,
 };

@@ -1,12 +1,19 @@
 'use strict';
 // const app = require('../app.js');
-// const store = require('../store');
+const store = require('../store');
 
+// const updateGamesSuccess =
 
 const getHistorySuccess = (data) => {
   // store.user = data.user;
   console.log(data);
   $("#messages").text("games:" + data.games.length);
+};
+
+const createGameSuccess = (data) => {
+  store.game = data.game;
+  console.log(data);
+  $("#messages").text("New Game Created");
 };
 
 const success = (data) => {
@@ -23,4 +30,5 @@ module.exports = {
   failure,
   success,
   getHistorySuccess,
+  createGameSuccess
 };
