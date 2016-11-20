@@ -1,7 +1,8 @@
  'use strict';
 
 // const store = require('../store');
-
+// over true/false
+debugger;
 let gState = 'go';
 let turn = 'X';
 const board = [
@@ -72,6 +73,8 @@ const cellclick = function (e) {
           board[$(this).data('cell')] = turn;
           $(this).text(turn);     // sets X/O to a div
           gState = isWin();         // returns true if win or draw state detected
+          // send PATCH
+          debugger;
           if (gState !== 'go') {
               console.log(gState);
               if (gState === 'winX') {

@@ -7,6 +7,14 @@ const store = require('../store');
 
 //authApi.signUp(authUi.success, authUi.failure, data);
 
+const signUp = function(data){
+  return $.ajax({
+    url: app.host + '/games',
+    method: 'POST',
+    data,
+  });
+};
+
 const getHistory = function(){
   return $.ajax({
     url: app.host + '/games',
