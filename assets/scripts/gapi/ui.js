@@ -6,7 +6,7 @@
 const getHistorySuccess = (data) => {
   // store.user = data.user;
   console.log(data);
-  $("#messages").innerhtml("games:" data.game.length);
+  $("#messages").text("games:" + data.games.length);
 };
 
 const success = (data) => {
