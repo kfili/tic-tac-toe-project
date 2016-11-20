@@ -7,10 +7,13 @@ const store = require('../store');
 
 //authApi.signUp(authUi.success, authUi.failure, data);
 
-const signUp = function(data){
+const createGames = function(data){
   return $.ajax({
     url: app.host + '/games',
     method: 'POST',
+    headers : {
+          Authorization: 'Token token=' + store.user.token,
+    },
     data,
   });
 };
@@ -26,5 +29,6 @@ const getHistory = function(){
 };
 
 module.exports = {
-  getHistory
+  getHistory,
+  createGames
 };
