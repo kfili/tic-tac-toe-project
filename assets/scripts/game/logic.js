@@ -1,8 +1,8 @@
  'use strict';
 
 const events = require('./events');
-// const store = require('../store');
-let over = false;
+const store = require('../store');
+
 let gState = 'go';
 let turn = 'X';
 const board = [
@@ -58,10 +58,8 @@ const isWin = function () {
     board[3] !== '' && board[4] !== '' && board[5] !== '' &&
     board[6] !== '' && board[7] !== '' && board[8] !== ''
       ) {
-        console.log('CATs game');
         return 'cat';
       } else {
-        console.log('nada');
         return 'go';
       }
 };
@@ -71,23 +69,23 @@ const cellClick = function (e) {
     if (gState === 'go') {                        //gStateCheck
       if (board[$(this).data('cell')] === '' ) {  //cellCheck
           board[$(this).data('cell')] = turn;
-          $(this).text(turn);       // sets X/O to a div
+          $(this).text(turn);       // sets X/O to a cell
           gState = isWin();         // returns true if win or draw state detected
-          // send PATCH - call updateGame
+          // store.index = $(this).data('cell');
+          // events.onUpdateGame();
+          console.log(gState);
           if (gState !== 'go') {                  //winCheck
-              console.log(gState);
               if (gState === 'winX') {
                 $('#status').text('Player X wins!!');
-                over = true;
+                store.game.over = true;
               } else if (gState === 'winO') {
                 $('#status').text('Player O wins!!');
-                over = true;
+                store.game.over = true;
               } else {
                 $('#status').text("Cat's Game.");
-                over = true;
+                store.game.over = true;
               }
             } else {
-            console.log(gState);
             switchTurn();           // switches a variable that = X or O
             }
           }
@@ -95,7 +93,7 @@ const cellClick = function (e) {
       emptyBoard();                 // clears the board array.
       gState = 'go';
       switchTurn();
-      over = false;
+      store.game.over = false;
       events.onCreateGame();
       }
   };

@@ -16,6 +16,12 @@ const createGameSuccess = (data) => {
   $("#messages").text("New Game Created");
 };
 
+const updateGameSuccess = (data) => {
+  store.game = data.game;
+  console.log(data);
+  $("#messages").text("Game Updated");
+};
+
 const success = (data) => {
   console.log(data);
   $("#messages").text("success");

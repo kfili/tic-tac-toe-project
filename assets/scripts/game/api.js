@@ -8,11 +8,11 @@ const store = require('../store');
 
 const createGame = function(){
   return $.ajax({
-    url: app.host + '/games', //'games/' ?
+    url: app.host + '/games', // or '/games/' ?
     method: 'POST',
     game: {},
     headers : {
-          Authorization: 'Token token=' + store.user.token,
+        Authorization: 'Token token=' + store.user.token,
     },
   });
 };
@@ -22,12 +22,24 @@ const getHistory = function(){
     url: app.host + '/games',
     method: 'GET',
     headers : {
-          Authorization: 'Token token=' + store.user.token,
+        Authorization: 'Token token=' + store.user.token,
     }
+  });
+};
+
+const updateGame = function(data){
+  return $.ajax({
+    method: 'PATCH',
+    url: app.host + '/games/' + store.game.id,
+    headers: {
+        Authorization: 'Token token=' + store.user.token,
+    },
+    data,
   });
 };
 
 module.exports = {
   getHistory,
-  createGame
+  createGame,
+  updateGame,
 };
