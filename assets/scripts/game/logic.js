@@ -76,7 +76,7 @@ const cellClick = function (e) {
           // store.index = $(this).data('cell');
           let data = {
             game: {
-              index: $(this).data('cell'),        //Test values
+              index: $(this).data('cell'),
               value: turn,
             },
           };
