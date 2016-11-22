@@ -1,8 +1,8 @@
 'use strict';
 
 const authEvents = require('./auth/events.js');
+const logicEvents = require('./game/logic.js');
 const gameEvents = require('./game/events.js');
-const gapiEvents = require('./gapi/events.js');
 
 // On document ready
 $(() => {
@@ -10,9 +10,9 @@ $(() => {
 });
 
 $(() => {
-  gameEvents.gameHandlers();
+  logicEvents.logicHandlers();
 });
 
 $(() => {
-  gapiEvents.gapiHandlers();
+  gameEvents.gameHandlers();
 });
