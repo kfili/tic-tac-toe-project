@@ -1,9 +1,16 @@
- 'use strict';
+'use strict';
 
 const events = require('./events');
 const api = require('./api');
 const ui = require('./ui');
 const store = require('../store');
+
+$(".col-xs-4").hide();
+$("#status").hide();
+$("#show-history").hide();
+$("#change-password").hide();
+$("#sign-out").hide();
+
 
 let gState = 'go';
 let turn = 'X';
