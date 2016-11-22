@@ -21,28 +21,20 @@ const onCreateGame = function(){
   .fail(ui.fail);
 };
 
-const onUpdateGame = function(event){
-  event.preventDefault();
-  let data = {
-      "game": {
-        "cell": {
-          "index": store.index,
-          "value": "x",
-        },
-        "over": store.game.over,
-      },
-    };  // event.preventDefault();   // I also removed get form fields
-  api.updateGame(data)
-  .done(ui.updateGameSuccess)
-  .fail(ui.failure);
-};
+// const onUpdateGame = function(data){
+//   // event.preventDefault();  // removed get form fields
+//   api.updateGame(data)
+//   .done(ui.updateGameSuccess)
+//   .fail(ui.failure);
+// };
 
 const gameHandlers = () => {
   $('#show-history-button').on('click', onGetHistory);
-  $('.col-xs-4').on('click', onUpdateGame);
+  // $('.col-xs-4').on('click', onUpdateGame);
 };
 
 module.exports = {
   gameHandlers,
   onCreateGame,
+  // onUpdateGame,
 };

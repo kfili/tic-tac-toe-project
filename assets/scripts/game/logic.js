@@ -1,6 +1,8 @@
  'use strict';
 
 const events = require('./events');
+const api = require('./api');
+const ui = require('./ui');
 const store = require('../store');
 
 let gState = 'go';
@@ -72,7 +74,15 @@ const cellClick = function (e) {
           $(this).text(turn);       // sets X/O to a cell
           gState = isWin();         // returns true if win or draw state detected
           // store.index = $(this).data('cell');
-          // events.onUpdateGame();
+          let data = {
+            game: {
+              index: 9,        //Test values
+              value: 'x',
+            },
+          };
+          api.updateGame(data)
+            .then(ui.moveSuccess)
+            .catch(ui.failure);
           console.log(gState);
           if (gState !== 'go') {                  //winCheck
               if (gState === 'winX') {
