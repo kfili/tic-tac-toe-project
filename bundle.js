@@ -30,8 +30,8 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
 	var authEvents = __webpack_require__(3);
-	var gameEvents = __webpack_require__(9);
-	var gapiEvents = __webpack_require__(10);
+	var logicEvents = __webpack_require__(12);
+	var gameEvents = __webpack_require__(8);
 
 	// On document ready
 	$(function () {
@@ -39,11 +39,11 @@ webpackJsonp([0],[
 	});
 
 	$(function () {
-	  gameEvents.gameHandlers();
+	  logicEvents.logicHandlers();
 	});
 
 	$(function () {
-	  gapiEvents.gapiHandlers();
+	  gameEvents.gameHandlers();
 	});
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
@@ -56,7 +56,7 @@ webpackJsonp([0],[
 
 	var api = __webpack_require__(4);
 	var ui = __webpack_require__(7);
-	var getFormFields = __webpack_require__(8);
+	var getFormFields = __webpack_require__(11);
 
 	var onSignUp = function onSignUp(event) {
 	  event.preventDefault();
@@ -169,7 +169,12 @@ webpackJsonp([0],[
 	
 	'use strict';
 
-	var store = {};
+	var store = {
+	  game: {
+	    over: false,
+	    index: 9
+	  }
+	};
 
 	module.exports = store;
 
@@ -181,11 +186,13 @@ webpackJsonp([0],[
 
 	var app = __webpack_require__(5);
 	var store = __webpack_require__(6);
+	var gameEvents = __webpack_require__(8);
 
 	var signInSuccess = function signInSuccess(data) {
 	  store.user = data.user;
 	  console.log(store.user);
 	  $("#messages").text("success");
+	  gameEvents.onCreateGame();
 	};
 
 	var signOutSuccess = function signOutSuccess() {
@@ -219,6 +226,146 @@ webpackJsonp([0],[
 
 /***/ },
 /* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+
+	var api = __webpack_require__(9);
+	var ui = __webpack_require__(10);
+	var store = __webpack_require__(6);
+
+	// const logic = require('./logic');
+	//const getFormFields = require('../../../lib/get-form-fields.js');
+
+	var onGetHistory = function onGetHistory(event) {
+	  event.preventDefault();
+	  api.getHistory().done(ui.getHistorySuccess).fail(ui.fail);
+	};
+
+	var onCreateGame = function onCreateGame() {
+	  // event.preventDefault();
+	  api.createGame().done(ui.createGameSuccess).fail(ui.fail);
+	};
+
+	// const onUpdateGame = function(data){
+	//   // event.preventDefault();  // removed get form fields
+	//   api.updateGame(data)
+	//   .done(ui.updateGameSuccess)
+	//   .fail(ui.failure);
+	// };
+
+	var gameHandlers = function gameHandlers() {
+	  $('#show-history-button').on('click', onGetHistory);
+	  // $('.col-xs-4').on('click', onUpdateGame);
+	};
+
+	module.exports = {
+	  gameHandlers: gameHandlers,
+	  onCreateGame: onCreateGame
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ },
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+
+	var app = __webpack_require__(5);
+	var store = __webpack_require__(6);
+	// const getFormFields = require('../../../lib/get-form-fields.js');
+
+	//authApi.signUp(authUi.success, authUi.failure, data);
+
+	var createGame = function createGame() {
+	  return $.ajax({
+	    url: app.host + '/games', // or '/games/' ?
+	    method: 'POST',
+	    game: {},
+	    headers: {
+	      Authorization: 'Token token=' + store.user.token
+	    }
+	  });
+	};
+
+	var getHistory = function getHistory() {
+	  return $.ajax({
+	    url: app.host + '/games',
+	    method: 'GET',
+	    headers: {
+	      Authorization: 'Token token=' + store.user.token
+	    }
+	  });
+	};
+
+	var updateGame = function updateGame(data) {
+	  return $.ajax({
+	    method: 'PATCH',
+	    url: app.host + '/games/' + store.game.id,
+	    headers: {
+	      Authorization: 'Token token=' + store.user.token
+	    },
+	    data: data
+	  });
+	};
+
+	module.exports = {
+	  getHistory: getHistory,
+	  createGame: createGame,
+	  updateGame: updateGame
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	// const app = require('../app.js');
+
+	var store = __webpack_require__(6);
+
+	// const updateGamesSuccess =
+
+	var getHistorySuccess = function getHistorySuccess(data) {
+	  // store.user = data.user;
+	  console.log(data);
+	  $("#messages").text("games:" + data.games.length);
+	};
+
+	var createGameSuccess = function createGameSuccess(data) {
+	  store.game = data.game;
+	  console.log(data);
+	  $("#messages").text("New Game Created");
+	};
+
+	var updateGameSuccess = function updateGameSuccess(data) {
+	  store.game = data.game;
+	  console.log(data);
+	  $("#messages").text("Game Updated");
+	};
+
+	var success = function success(data) {
+	  console.log(data);
+	  $("#messages").text("success");
+	};
+
+	var failure = function failure(error) {
+	  console.error(error);
+	  $("#messages").text("failure");
+	};
+
+	module.exports = {
+	  failure: failure,
+	  success: success,
+	  getHistorySuccess: getHistorySuccess,
+	  createGameSuccess: createGameSuccess,
+	  updateGameSuccess: updateGameSuccess
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ },
+/* 11 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -283,12 +430,15 @@ webpackJsonp([0],[
 	module.exports = getFormFields;
 
 /***/ },
-/* 9 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	// const store = require('../store');
+	var events = __webpack_require__(8);
+	var api = __webpack_require__(9);
+	var ui = __webpack_require__(10);
+	var store = __webpack_require__(6);
 
 	var gState = 'go';
 	var turn = 'X';
@@ -319,130 +469,61 @@ webpackJsonp([0],[
 	    console.log('O wins!!');
 	    return 'winO';
 	  } else if (board[0] !== '' && board[1] !== '' && board[2] !== '' && board[3] !== '' && board[4] !== '' && board[5] !== '' && board[6] !== '' && board[7] !== '' && board[8] !== '') {
-	    console.log('CATs game');
 	    return 'cat';
 	  } else {
-	    console.log('nada');
 	    return 'go';
 	  }
 	};
 
-	var cellclick = function cellclick(e) {
+	var cellClick = function cellClick(e) {
 	  e.preventDefault();
 	  if (gState === 'go') {
+	    //gStateCheck
 	    if (board[$(this).data('cell')] === '') {
+	      //cellCheck
 	      board[$(this).data('cell')] = turn;
-	      $(this).text(turn); // sets X/O to a div
+	      $(this).text(turn); // sets X/O to a cell
 	      gState = isWin(); // returns true if win or draw state detected
+	      // store.index = $(this).data('cell');
+	      var data = {
+	        game: {
+	          index: $(this).data('cell'),
+	          value: turn
+	        }
+	      };
+	      api.updateGame(data).done(ui.updateGameSuccess).fail(ui.failure);
 	      if (gState !== 'go') {
-	        console.log(gState);
+	        //winCheck
 	        if (gState === 'winX') {
 	          $('#status').text('Player X wins!!');
+	          store.game.over = true;
 	        } else if (gState === 'winO') {
 	          $('#status').text('Player O wins!!');
+	          store.game.over = true;
 	        } else {
 	          $('#status').text("Cat's Game.");
+	          store.game.over = true;
 	        }
 	      } else {
-	        console.log(gState);
 	        switchTurn(); // switches a variable that = X or O
 	      }
 	    }
 	  } else if (gState !== 'go') {
+	    //resetGame
 	    emptyBoard(); // clears the board array.
 	    gState = 'go';
 	    switchTurn();
+	    store.game.over = false;
+	    events.onCreateGame();
 	  }
 	};
 
-	var gameHandlers = function gameHandlers() {
-	  $('.col-xs-4').on('click', cellclick);
+	var logicHandlers = function logicHandlers() {
+	  $('.col-xs-4').on('click', cellClick);
 	};
 
 	module.exports = {
-	  gameHandlers: gameHandlers
-	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ },
-/* 10 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function($) {'use strict';
-
-	var api = __webpack_require__(11);
-	var ui = __webpack_require__(12);
-	//const getFormFields = require('../../../lib/get-form-fields.js');
-
-	var onGetHistory = function onGetHistory(event) {
-	  event.preventDefault();
-	  api.getHistory(data).done(ui.getHistorySuccess).fail(ui.fail);
-	};
-
-	var gapiHandlers = function gapiHandlers() {
-	  $('#show-history-modal').on('submit', onGetHistory);
-	};
-
-	module.exports = {
-	  gapiHandlers: gapiHandlers
-	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ },
-/* 11 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function($) {'use strict';
-
-	var app = __webpack_require__(5);
-
-	var store = __webpack_require__(6);
-	// const getFormFields = require('../../../lib/get-form-fields.js');
-
-	//authApi.signUp(authUi.success, authUi.failure, data);
-
-	var getHistory = function getHistory(data) {
-	  return $.ajax({
-	    url: app.host + '/games/',
-	    method: 'GET',
-	    data: data
-	  });
-	};
-
-	module.exports = {
-	  getHistory: getHistory
-	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ },
-/* 12 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function($) {'use strict';
-
-	var app = __webpack_require__(5);
-	var store = __webpack_require__(6);
-
-	var getHistorySuccess = function getHistorySuccess(data) {
-	  store.user = data.user;
-	  console.log(store.user);
-	  $("#messages").text("success");
-	};
-
-	var success = function success(data) {
-	  console.log(data);
-	  $("#messages").text("success");
-	};
-
-	var failure = function failure(error) {
-	  console.error(error);
-	  $("#messages").text("failure");
-	};
-
-	module.exports = {
-	  failure: failure,
-	  success: success,
-	  getHistorySuccess: getHistorySuccess
+	  logicHandlers: logicHandlers
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
@@ -842,7 +923,7 @@ webpackJsonp([0],[
 /* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["getFormFields"] = __webpack_require__(8);
+	/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["getFormFields"] = __webpack_require__(11);
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }
