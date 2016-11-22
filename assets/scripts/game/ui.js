@@ -17,7 +17,6 @@ const createGameSuccess = (data) => {
 };
 
 const updateGameSuccess = (data) => {
-  debugger;
   store.game = data.game;
   console.log(data);
   $("#messages").text("Game Updated");

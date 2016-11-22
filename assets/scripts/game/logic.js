@@ -76,14 +76,13 @@ const cellClick = function (e) {
           // store.index = $(this).data('cell');
           let data = {
             game: {
-              index: 9,        //Test values
-              value: 'x',
+              index: $(this).data('cell'),        //Test values
+              value: turn,
             },
           };
           api.updateGame(data)
-            .then(ui.moveSuccess)
-            .catch(ui.failure);
-          console.log(gState);
+          .done(ui.updateGameSuccess)
+          .fail(ui.failure);
           if (gState !== 'go') {                  //winCheck
               if (gState === 'winX') {
                 $('#status').text('Player X wins!!');
