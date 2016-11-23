@@ -48,7 +48,6 @@ const isWin = function () {
     board[0] === 'X' && board[4] === 'X' && board[8] === 'X' ||
     board[2] === 'X' && board[4] === 'X' && board[6] === 'X'
       ) {
-        console.log('X wins!!');
         return 'winX';
       } else if (
     board[0] === 'O' && board[1] === 'O' && board[2] === 'O' ||
@@ -60,7 +59,6 @@ const isWin = function () {
     board[0] === 'O' && board[4] === 'O' && board[8] === 'O' ||
     board[2] === 'O' && board[4] === 'O' && board[6] === 'O'
       ) {
-        console.log('O wins!!');
         return 'winO';
       } else if (
     board[0] !== '' && board[1] !== '' && board[2] !== '' &&
