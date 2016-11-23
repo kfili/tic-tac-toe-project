@@ -50,3 +50,4 @@ As a user I want to:
 - No online multiplayer support.
 - No HTTPS, users must be warned not to use real emails and passwords.
 - Game not playable unless signed in, creating a barrier to new users.
+- Number of games played should be displayed from button on drop down menu.

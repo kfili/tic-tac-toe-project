@@ -9,7 +9,7 @@ const signInSuccess = (data) => {
   $(".col-xs-4").show();
   $("#status").show();
   $("#show-history").show();
-  $("#change-password").show();
+  $("#change-password-open").show();
   $("#sign-out").show();
   gameEvents.onCreateGame();
 };
@@ -20,7 +20,7 @@ const signOutSuccess = () => {
   $(".col-xs-4").hide();
   $("#status").hide();
   $("#show-history").hide();
-  $("#change-password").hide();
+  $("#change-password-open").hide();
   $("#sign-out").hide();
 };
 

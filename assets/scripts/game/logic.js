@@ -8,7 +8,7 @@ const store = require('../store');
 $(".col-xs-4").hide();
 $("#status").hide();
 $("#show-history").hide();
-$("#change-password").hide();
+$("#change-password-open").hide();
 $("#sign-out").hide();
 
 
