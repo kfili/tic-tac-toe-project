@@ -189,7 +189,6 @@ webpackJsonp([0],[
 
 	var signInSuccess = function signInSuccess(data) {
 	  store.user = data.user;
-	  console.log(store.user);
 	  $("#messages").text("success");
 	  $(".col-xs-4").show();
 	  $("#status").show();
@@ -201,7 +200,6 @@ webpackJsonp([0],[
 
 	var signOutSuccess = function signOutSuccess() {
 	  $("#messages").text("success");
-	  console.log(store.user);
 	  $(".col-xs-4").hide();
 	  $("#status").hide();
 	  $("#show-history").hide();
@@ -210,12 +208,10 @@ webpackJsonp([0],[
 	};
 
 	var changePasswordSuccess = function changePasswordSuccess() {
-	  console.log("Password Successfully Changed.");
 	  $("#messages").text("success");
 	};
 
 	var success = function success(data) {
-	  console.log(data);
 	  $("#messages").text("success");
 	};
 
@@ -329,24 +325,20 @@ webpackJsonp([0],[
 
 	var getHistorySuccess = function getHistorySuccess(data) {
 	  // store.user = data.user;
-	  console.log(data);
 	  $("#messages").text("Number of Games Played: " + data.games.length);
 	};
 
 	var createGameSuccess = function createGameSuccess(data) {
 	  store.game = data.game;
-	  console.log(data);
 	  $("#messages").text("New Game Created");
 	};
 
 	var updateGameSuccess = function updateGameSuccess(data) {
 	  store.game = data.game;
-	  console.log(data);
 	  $("#messages").text("Game Updated");
 	};
 
 	var success = function success(data) {
-	  console.log(data);
 	  $("#messages").text("success");
 	};
 
@@ -469,10 +461,8 @@ webpackJsonp([0],[
 
 	var isWin = function isWin() {
 	  if (board[0] === 'X' && board[1] === 'X' && board[2] === 'X' || board[3] === 'X' && board[4] === 'X' && board[5] === 'X' || board[6] === 'X' && board[7] === 'X' && board[8] === 'X' || board[0] === 'X' && board[3] === 'X' && board[6] === 'X' || board[1] === 'X' && board[4] === 'X' && board[7] === 'X' || board[2] === 'X' && board[5] === 'X' && board[8] === 'X' || board[0] === 'X' && board[4] === 'X' && board[8] === 'X' || board[2] === 'X' && board[4] === 'X' && board[6] === 'X') {
-	    console.log('X wins!!');
 	    return 'winX';
 	  } else if (board[0] === 'O' && board[1] === 'O' && board[2] === 'O' || board[3] === 'O' && board[4] === 'O' && board[5] === 'O' || board[6] === 'O' && board[7] === 'O' && board[8] === 'O' || board[0] === 'O' && board[3] === 'O' && board[6] === 'O' || board[1] === 'O' && board[4] === 'O' && board[7] === 'O' || board[2] === 'O' && board[5] === 'O' && board[8] === 'O' || board[0] === 'O' && board[4] === 'O' && board[8] === 'O' || board[2] === 'O' && board[4] === 'O' && board[6] === 'O') {
-	    console.log('O wins!!');
 	    return 'winO';
 	  } else if (board[0] !== '' && board[1] !== '' && board[2] !== '' && board[3] !== '' && board[4] !== '' && board[5] !== '' && board[6] !== '' && board[7] !== '' && board[8] !== '') {
 	    return 'cat';
