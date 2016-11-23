@@ -4,7 +4,6 @@ const gameEvents = require('../game/events');
 
 const signInSuccess = (data) => {
   store.user = data.user;
-  console.log(store.user);
   $("#messages").text("success");
   $(".col-xs-4").show();
   $("#status").show();
@@ -16,7 +15,6 @@ const signInSuccess = (data) => {
 
 const signOutSuccess = () => {
   $("#messages").text("success");
-  console.log(store.user);
   $(".col-xs-4").hide();
   $("#status").hide();
   $("#show-history").hide();
@@ -25,12 +23,10 @@ const signOutSuccess = () => {
 };
 
 const changePasswordSuccess = () => {
-  console.log("Password Successfully Changed.");
   $("#messages").text("success");
 };
 
 const success = (data) => {
-  console.log(data);
   $("#messages").text("success");
 };
 

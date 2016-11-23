@@ -6,24 +6,20 @@ const store = require('../store');
 
 const getHistorySuccess = (data) => {
   // store.user = data.user;
-  console.log(data);
   $("#messages").text("Number of Games Played: " + data.games.length);
 };
 
 const createGameSuccess = (data) => {
   store.game = data.game;
-  console.log(data);
   $("#messages").text("New Game Created");
 };
 
 const updateGameSuccess = (data) => {
   store.game = data.game;
-  console.log(data);
   $("#messages").text("Game Updated");
 };
 
 const success = (data) => {
-  console.log(data);
   $("#messages").text("success");
 };
 
