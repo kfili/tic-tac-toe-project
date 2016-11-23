@@ -7,7 +7,7 @@ const store = require('../store');
 const getHistorySuccess = (data) => {
   // store.user = data.user;
   console.log(data);
-  $("#messages").text("games:" + data.games.length);
+  $("#messages").text("Number of Games Played: " + data.games.length);
 };
 
 const createGameSuccess = (data) => {
