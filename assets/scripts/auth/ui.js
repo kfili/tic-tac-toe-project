@@ -23,10 +23,10 @@ const signOutSuccess = () => {
 };
 
 const changePasswordSuccess = () => {
-  $("#messages").text("success");
+  $("#messages").text("password changed");
 };
 
-const success = (data) => {
+const success = () => {
   $("#messages").text("success");
 };
 
