@@ -1,4 +1,4 @@
-#Tic Tac Toe
+# Tic Tac Toe
 ##A classic game with a Swedish Modernist Twist.
 by Kosta Filiotis
 
@@ -11,7 +11,7 @@ javascript, jQuery, JSON, Ajax, Curl, Github (version control), HTML, SCSS
 
 ##Planning:
 For planning I used wireframes:
-https://docs.google.com/drawings/d/1FRIiKBJy5gUeLUbL_l5s-GBwFNYvbAPCeLZ7G4VnZ0g/edit?usp=sharing
+http://imgur.com/a/8wPEx
 
 I also used user stories.
 As a user I want to:
