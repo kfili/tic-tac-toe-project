@@ -3,16 +3,43 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/';
 
 
-$background-color: #d3d3d3;
 $font-color: #dfdfdf;
 $white: #fff;
 $blue: #00f;
 $black: #000;
 $cyangreen: #cff;
 
+div.container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+div.container div.align {
+  position: relative;
+  width: 10000px;
+  left: 50%;
+  margin: 0 0 0 -5000px;
+  text-align: center;
+}
+
 body {
-  background-color: $background-color;
+  // background-color: $background-color;
+  background-color: $black;
+  // background-image: url('../img/background.jpg');
+  // background-position: center center;
+  // background-repeat: no-repeat;
+  // background-attachment: fixed;
+  // background-size: auto;
   color: $font-color;
+  // height: auto;
+  // background-size: 1440px 800px;
+  // margin: 0;
+  // padding: 0;
+  // width: auto;
+  // display: compact;
+  // font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  // z-index: -1; position:relative;
 }
 
 h1 {
@@ -45,4 +72,8 @@ h5 {
   line-height: 185px;
   text-align: center;
   width: 200px;
+}
+
+#messages {
+  color: $black;
 }

@@ -73,44 +73,44 @@ const isWin = function () {
 
 const cellClick = function (e) {
   e.preventDefault();
-    if (gState === 'go') {                        //gStateCheck
-      if (board[$(this).data('cell')] === '' ) {  //cellCheck
-          board[$(this).data('cell')] = turn;
-          $(this).text(turn);       // sets X/O to a cell
-          gState = isWin();         // returns true if win or draw state detected
-          // store.index = $(this).data('cell');
-          let data = {
-            game: {
-              index: $(this).data('cell'),
-              value: turn,
-            },
-          };
-          api.updateGame(data)
-          .done(ui.updateGameSuccess)
-          .fail(ui.failure);
-          if (gState !== 'go') {                  //winCheck
-              if (gState === 'winX') {
-                $('#status').text('Player X wins!!');
-                store.game.over = true;
-              } else if (gState === 'winO') {
-                $('#status').text('Player O wins!!');
-                store.game.over = true;
-              } else {
-                $('#status').text("Cat's Game.");
-                store.game.over = true;
-              }
+  if (gState === 'go') {                        //gStateCheck
+    if (board[$(this).data('cell')] === '' ) {  //cellCheck
+        board[$(this).data('cell')] = turn;
+        $(this).text(turn);       // sets X/O to a cell
+        gState = isWin();         // returns true if win or draw state detected
+        // store.index = $(this).data('cell');
+        let data = {
+          game: {
+            index: $(this).data('cell'),
+            value: turn,
+          },
+        };
+        api.updateGame(data)
+        .done(ui.updateGameSuccess)
+        .fail(ui.failure);
+        if (gState !== 'go') {                  //winCheck
+            if (gState === 'winX') {
+              $('#status').text('Player X wins!!');
+              store.game.over = true;
+            } else if (gState === 'winO') {
+              $('#status').text('Player O wins!!');
+              store.game.over = true;
             } else {
-            switchTurn();           // switches a variable that = X or O
+              $('#status').text("Cat's Game.");
+              store.game.over = true;
             }
+          } else {
+          switchTurn();           // switches a variable that = X or O
           }
-    } else if (gState !== 'go') {                 //resetGame
+        }
+  } else if (gState !== 'go') {                 //resetGame
       emptyBoard();                 // clears the board array.
       gState = 'go';
       switchTurn();
       store.game.over = false;
       events.onCreateGame();
-      }
-  };
+  }
+};
 
 const logicHandlers = () => {
   $('.col-xs-4').on('click', cellClick);
