@@ -9,19 +9,19 @@ $blue: #00f;
 $black: #000;
 $cyangreen: #cff;
 
-div.container {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
-div.container div.align {
-  position: relative;
-  width: 10000px;
-  left: 50%;
-  margin: 0 0 0 -5000px;
-  text-align: center;
-}
+// div.container {
+//   width: 100%;
+//   overflow: hidden;
+//   position: relative;
+// }
+//
+// div.container div.align {
+//   position: relative;
+//   width: 10000px;
+//   left: 50%;
+//   margin: 0 0 0 -5000px;
+//   text-align: center;
+// }
 
 body {
   // background-color: $background-color;
@@ -53,6 +53,14 @@ h5 {
 
 * {
   font-family: verdana;
+}
+
+.full {
+  background: url(../img/board.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .box {
