@@ -78,14 +78,14 @@ h5 {
   width: 200px;
 }
 
-.row {
-  float: center;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  z-index: 1000;
-}
-
-// #messages {
-//   color: $black;
+// .row {
+//   float: center;
+//   position: absolute;
+//   left: 0px;
+//   top: 0px;
+//   z-index: 1000;
 // }
+
+#messages {
+  color: $black;
+}
