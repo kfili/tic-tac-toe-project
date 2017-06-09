@@ -77,16 +77,12 @@ h5 {
   width: 200px;
 }
 
-// .board {
-//   float: center;
-//   position: absolute;
-//   left: 0px;
-//   top: 0px;
-//   right: 0;
-//   bottom: 0;
-//   z-index: 1000;
-//   margin: auto;
-// }
+.board {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: blue;
+  width: 600px;
+}
 
 #messages {
   color: $black;
