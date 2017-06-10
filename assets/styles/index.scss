@@ -24,7 +24,7 @@ $transparent: rgba(0, 0, 0, 0);
 //   text-align: center;
 // }
 
-body {
+html body {
   // background-color: $background-color;
   background-color: $transparent;
   // background-image: url('../img/background.jpg');
@@ -33,11 +33,11 @@ body {
   // background-attachment: fixed;
   // background-size: auto;
   color: $font-color;
-  // height: auto;
+  height: 100%;
   // background-size: 1440px 800px;
   // margin: 0;
   // padding: 0;
-  // width: auto;
+  width: 100%;
   // display: compact;
   // font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
   // z-index: -1; position:relative;
@@ -69,19 +69,20 @@ h5 {
 }
 
 .col-xs-4 {
-  background-color: $transparent;
+  background-color: yellow;
   color: $black;
-  font-size: 1500%;
-  height: 200px;
-  line-height: 185px;
-  width: 200px;
+  font-size: 15vh;
+  height: 20vh;
+  line-height: 15vh;
+  width: 20vh;
 }
 
 .board {
   margin-left: auto;
   margin-right: auto;
   background-color: blue;
-  width: 600px;
+  width: 70vh;
+  height: 70vh;
 }
 
 #messages {
